@@ -4,10 +4,12 @@ import Modelo.Modelo;
 import Vista.Vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import Extras.DataValidation;
 
 public class Controlador implements ActionListener {
     Modelo modelo=new Modelo();
     Vista vista=new Vista();
+    DataValidation dataValidation = new DataValidation();
     
     public Controlador( Vista vista , Modelo modelo){
         this.vista = vista;
@@ -30,8 +32,8 @@ public class Controlador implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) 
     {
-       modelo.setNumero(Double.parseDouble(vista.jtf_numero1.getText())) ;
-       modelo.setNumero2(Double.parseDouble(vista.jtf_numero2.getText())) ;
+       modelo.setNumero(dataValidation.String2Float(vista.jtf_numero1.getText())) ;
+       modelo.setNumero2(dataValidation.String2Float(vista.jtf_numero2.getText())) ;
        if (e.getSource()== vista.jb_suma)modelo.setOperador("+");
        if (e.getSource()== vista.jb_resta)modelo.setOperador("-");
        if (e.getSource()== vista.jb_modulo)modelo.setOperador("%");
